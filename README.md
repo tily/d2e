@@ -1,6 +1,6 @@
 # D2E
 
-TODO: Write a gem description
+Utility for converting diff to events.
 
 ## Installation
 
