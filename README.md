@@ -18,7 +18,76 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+require 'd2e'
+require 'json'
+
+prev = [
+  {'id' => 1, 'name' => 'John',   'description' => 'Guitar'},
+  {'id' => 2, 'name' => 'Paul',   'description' => 'Bass'},
+  {'id' => 3, 'name' => 'George', 'description' => 'Guitar'},
+  {'id' => 4, 'name' => 'Ringo',  'description' => 'Drums'},
+]
+curr = [
+  {'id' => 2, 'name' => 'Paul',   'description' => 'Bass/BeatMaking'},
+  {'id' => 4, 'name' => 'Ringo',  'description' => 'Drums'},
+  {'id' => 5, 'name' => 'Nas',    'description' => 'Rap'},
+  {'id' => 6, 'name' => 'Biggie', 'description' => 'Rap'},
+]
+
+d2e = D2E.new(key: 'id')
+events = d2e.diff(prev, curr)
+puts JSON.pretty_generate(events)
+```
+
+output:
+
+```
+[
+  {
+    "type": "create",
+    "item": {
+      "id": 5,
+      "name": "Nas",
+      "description": "Rap"
+    }
+  },
+  {
+    "type": "create",
+    "item": {
+      "id": 6,
+      "name": "Biggie",
+      "description": "Rap"
+    }
+  },
+  {
+    "type": "delete",
+    "item": {
+      "id": 1,
+      "name": "John",
+      "description": "Guitar"
+    }
+  },
+  {
+    "type": "delete",
+    "item": {
+      "id": 3,
+      "name": "George",
+      "description": "Guitar"
+    }
+  },
+  {
+    "type": "update",
+    "id": 2,
+    "diff": {
+      "description": [
+        "Bass",
+        "Bass/BeatMaking"
+      ]
+    }
+  }
+]
+```
 
 ## Contributing
 
