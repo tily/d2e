@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = D2e::VERSION
   spec.authors       = ["tily"]
   spec.email         = ["tily05@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{diff to events}
+  spec.description   = %q{diff to events}
   spec.homepage      = ""
   spec.license       = "MIT"
 
