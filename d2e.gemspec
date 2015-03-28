@@ -5,7 +5,7 @@ require 'd2e/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "d2e"
-  spec.version       = D2e::VERSION
+  spec.version       = D2E::VERSION
   spec.authors       = ["tily"]
   spec.email         = ["tidnlyam@gmail.com"]
   spec.summary       = %q{diff to events}
