@@ -1,4 +1,4 @@
-# D2e
+# D2E
 
 TODO: Write a gem description
 
