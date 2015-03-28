@@ -38,7 +38,7 @@ class D2E
         end
       end
       if !diff.empty?
-        events << {type: :update, id: id, diff: diff}
+        events << {'type' => 'update', 'id' => id, 'diff' => diff}
       end
     end
 
