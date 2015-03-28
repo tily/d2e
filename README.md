@@ -2,20 +2,6 @@
 
 Utility for converting diff to events.
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'd2e'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install d2e
-
 ## Usage
 
 ```
@@ -88,6 +74,20 @@ output:
   }
 ]
 ```
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'd2e'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install d2e
 
 ## Contributing
 
