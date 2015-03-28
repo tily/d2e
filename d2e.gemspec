@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "d2e"
   spec.version       = D2e::VERSION
   spec.authors       = ["tily"]
-  spec.email         = ["tily05@gmail.com"]
+  spec.email         = ["tidnlyam@gmail.com"]
   spec.summary       = %q{diff to events}
   spec.description   = %q{diff to events}
   spec.homepage      = ""
