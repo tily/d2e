@@ -4,6 +4,8 @@ Utility for converting diff to events.
 
 ## Usage
 
+### Basic
+
 ```
 require 'd2e'
 require 'json'
@@ -21,8 +23,8 @@ curr = [
   {'id' => 6, 'name' => 'Biggie', 'description' => 'Rap'},
 ]
 
-d2e = D2E.new(key: 'id')
-events = d2e.diff(prev, curr)
+d2e = D2E.new(id: 'id')
+events = d2e.d2e(prev, curr)
 puts JSON.pretty_generate(events)
 ```
 
@@ -69,6 +71,72 @@ output:
       "description": [
         "Bass",
         "Bass/BeatMaking"
+      ]
+    }
+  }
+]
+```
+
+### Multiple Primary Keys
+
+```
+prev = [
+  {'groupName' => 'web', 'ipProtocol' => 'TCP', 'inOut' => 'IN', 'fromPort' => 80, 'toPort' => 80, 'ipRange' => '0.0.0.0/0'},
+  {'groupName' => 'web', 'ipProtocol' => 'TCP', 'inOut' => 'IN', 'fromPort' => 443, 'toPort' => 443, 'ipRange' => '0.0.0.0/0'},
+  {'groupName' => 'mon', 'ipProtocol' => 'ICMP', 'inOut' => 'OUT', 'group' => 'web'},
+]
+curr = [
+  {'groupName' => 'web', 'ipProtocol' => 'TCP', 'inOut' => 'IN', 'fromPort' => 443, 'toPort' => 443, 'ipRange' => '0.0.0.0/0'},
+  {'groupName' => 'mon', 'ipProtocol' => 'ICMP', 'inOut' => 'OUT', 'group' => 'web', 'description' => 'for ping monitoring'},
+  {'groupName' => 'app', 'ipProtocol' => 'TCP', 'inOut' => 'IN', 'fromPort' => 8080, 'toPort' => 8080, 'group' => 'web'},
+]
+
+d2e = D2E.new(id: ['groupName', 'ipProtocol', 'inOut', 'fromPort', 'toPort', 'ipRange', 'group'])
+events = d2e.d2e(prev, curr)
+puts JSON.pretty_generate(events)
+```
+
+output:
+
+```
+[
+  {
+    "type": "create",
+    "item": {
+      "groupName": "app",
+      "ipProtocol": "TCP",
+      "inOut": "IN",
+      "fromPort": 8080,
+      "toPort": 8080,
+      "group": "web"
+    }
+  },
+  {
+    "type": "delete",
+    "item": {
+      "groupName": "web",
+      "ipProtocol": "TCP",
+      "inOut": "IN",
+      "fromPort": 80,
+      "toPort": 80,
+      "ipRange": "0.0.0.0/0"
+    }
+  },
+  {
+    "type": "update",
+    "id": {
+      "groupName": "mon",
+      "ipProtocol": "ICMP",
+      "inOut": "OUT",
+      "fromPort": null,
+      "toPort": null,
+      "ipRange": null,
+      "group": "web"
+    },
+    "diff": {
+      "description": [
+        null,
+        "for ping monitoring"
       ]
     }
   }
