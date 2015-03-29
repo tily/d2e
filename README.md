@@ -143,6 +143,44 @@ output:
 ]
 ```
 
+### Ignoring Specific Keys
+
+```
+prev = [
+  {'groupName' => 'web', 'groupDescription' => 'Web Instances', 'ipPermissions' => nil},
+  {'groupName' => 'apl', 'groupDescription' => 'Apl Instances', 'ipPermissions' => nil},
+  {'groupName' => 'db', 'groupDescription' => 'DB Instances', 'ipPermissions' => nil},
+]
+curr = [
+  {'groupName' => 'web', 'groupDescription' => 'Web Instances', 'ipPermissions' => {'item' => ['some ingresses']}},
+  {'groupName' => 'apl', 'groupDescription' => 'Apl Instances', 'ipPermissions' => {'item' => ['other ingresses']}},
+  {'groupName' => 'db', 'groupDescription' => 'Description changed', 'ipPermissions' => {'item' => ['blah blah']}},
+]
+
+d2e = D2E.new(id: 'groupName', ignore: 'ipPermissions')
+events = d2e.d2e(prev, curr)
+puts JSON.pretty_generate(events) 
+```
+
+output:
+
+```
+[
+  {
+    "type": "update",
+    "id": {
+      "groupName": "db"
+    },
+    "diff": {
+      "groupDescription": [
+        "DB Instances",
+        "Description changed"
+      ]
+    }
+  }
+]
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
