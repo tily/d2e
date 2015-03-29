@@ -3,6 +3,9 @@ require "d2e/version"
 class D2E
   def initialize(options)
     @id = [options[:id]].flatten
+    if options[:ignore]
+      @ignore = [options[:ignore]].flatten
+    end
   end
 
   def d2e(prev, curr)
@@ -23,6 +26,9 @@ class D2E
     remained.each do |prev_item, curr_item|
       diff = {}
       keys = prev_item.keys | curr_item.keys
+      if @ignore
+        keys = keys - @ignore
+      end
       keys.each do |key|
         prev_value = prev_item[key]
         curr_value = curr_item[key]
