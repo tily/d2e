@@ -66,7 +66,9 @@ output:
   },
   {
     "type": "update",
-    "id": 2,
+    "id": {
+      "id": 2
+    },
     "diff": {
       "description": [
         "Bass",
