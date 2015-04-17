@@ -74,6 +74,16 @@ output:
         "Bass",
         "Bass/BeatMaking"
       ]
+    },
+    "prev": {
+      "id": 2,
+      "name": "Paul",
+      "description": "Bass"
+    },
+    "curr": {
+      "id": 2,
+      "name": "Paul",
+      "description": "Bass/BeatMaking"
     }
   }
 ]
@@ -140,6 +150,19 @@ output:
         null,
         "for ping monitoring"
       ]
+    },
+    "prev": {
+      "groupName": "mon",
+      "ipProtocol": "ICMP",
+      "inOut": "OUT",
+      "group": "web"
+    },
+    "curr": {
+      "groupName": "mon",
+      "ipProtocol": "ICMP",
+      "inOut": "OUT",
+      "group": "web",
+      "description": "for ping monitoring"
     }
   }
 ]
@@ -178,6 +201,20 @@ output:
         "DB Instances",
         "Description changed"
       ]
+    },
+    "prev": {
+      "groupName": "db",
+      "groupDescription": "DB Instances",
+      "ipPermissions": null
+    },
+    "curr": {
+      "groupName": "db",
+      "groupDescription": "Description changed",
+      "ipPermissions": {
+        "item": [
+          "blah blah"
+        ]
+      }
     }
   }
 ]
