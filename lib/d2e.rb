@@ -38,7 +38,7 @@ class D2E
       end
       if !diff.empty?
         id = Hash[@id.map {|id| [id, prev_item[id]] }]
-        events << {'type' => 'update', 'id' => id, 'diff' => diff}
+        events << {'type' => 'update', 'id' => id, 'diff' => diff, 'prev' => prev_item, 'curr' => curr_item}
       end
     end
 
